@@ -206,8 +206,8 @@
   </footer>
 
   <script>
-    // Webhook / form endpoint (e.g. Formspree, Google Apps Script). Leave empty to save locally only.
-    var WAITLIST_ENDPOINT = '';
+    // Google Apps Script web app (Google Sheets). Leave empty to save locally only.
+    const WAITLIST_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxD1mi7_jMKW_G-kjBmM_UqcuCOldA-_gT1lnZFTC9Ig2LyFSd-24d_4fpIa3y13K80uw/exec';
     var STORAGE_KEY = 'schoolBridgeWaitlist';
 
     function loadEntries() {
@@ -251,9 +251,10 @@
       var send = WAITLIST_ENDPOINT
         ? fetch(WAITLIST_ENDPOINT, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            mode: 'no-cors', // opaque response: Apps Script sends no CORS headers
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // simple request, avoids preflight
             body: JSON.stringify(entry)
-          }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); })
+          })
         : Promise.resolve();
 
       send.then(function () {
