@@ -1,0 +1,12 @@
+{
+  "name": "جسر المدرسة",
+  "short_name": "جسر المدرسة",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#009688",
+  "description": "A secure, structured school-parent communication MVP",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": []
+}
