@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/utils/format_utils.dart';
+import '../../models/announcement_model.dart';
 import '../../models/mock_data.dart';
 import '../../models/student_model.dart';
 import 'subject_details_screen.dart';

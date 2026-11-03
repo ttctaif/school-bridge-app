@@ -50,7 +50,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           DropdownButtonFormField<String>(
-            value: _subjectId,
+            initialValue: _subjectId,
             decoration: const InputDecoration(
                 labelText: 'المادة والفصل', border: OutlineInputBorder()),
             items: [
