@@ -14,7 +14,39 @@
       theme: { extend: { fontFamily: { sans: ['Tajawal', 'sans-serif'] } } }
     };
   </script>
-  <style>html { scroll-behavior: smooth; }</style>
+  <style>
+    html { scroll-behavior: smooth; }
+    .phone {
+      width: 260px;
+      max-width: 100%;
+      aspect-ratio: 9 / 19;
+      padding: 10px;
+      border-radius: 40px;
+      background: #1f2937;
+      box-shadow: 0 25px 50px -12px rgba(15, 118, 110, .35), 0 0 0 2px #374151 inset;
+      position: relative;
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 6px;
+      border-radius: 3px;
+      background: #111827;
+      z-index: 1;
+    }
+    .phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 30px;
+      display: block;
+      background: #f6fbfa;
+    }
+  </style>
 </head>
 <body class="font-sans bg-slate-50 text-slate-800 antialiased">
 
@@ -79,6 +111,31 @@
       </div>
     </section>
 
+    <section id="showcase" class="bg-gradient-to-b from-slate-50 to-teal-50">
+      <div class="max-w-6xl mx-auto px-4 py-16">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-center">نظرة على التطبيق</h2>
+        <p class="mt-3 text-center text-slate-500">ثلاث شاشات تلخص التجربة (صور توضيحية مبدئية)</p>
+
+        <div class="mt-12 grid gap-12 md:grid-cols-3 justify-items-center">
+          <figure class="text-center">
+            <div class="phone"><img src="assets/images/screen-role.svg" alt="شاشة اختيار الدور: دخول موحد لولي الأمر والمعلمة" loading="lazy"></div>
+            <figcaption class="mt-5 font-bold">بيئة موحدة للجميع</figcaption>
+            <p class="mt-1 text-sm text-slate-500 max-w-xs">مسار دخول واحد لولي الأمر والمعلمة.</p>
+          </figure>
+          <figure class="text-center">
+            <div class="phone"><img src="assets/images/screen-subject.svg" alt="بطاقات المواد وآخر الإعلانات والواجبات" loading="lazy"></div>
+            <figcaption class="mt-5 font-bold">مجلس المادة وخلاصة الواجبات</figcaption>
+            <p class="mt-1 text-sm text-slate-500 max-w-xs">بطاقات المواد وإعلاناتها دون تشويش.</p>
+          </figure>
+          <figure class="text-center">
+            <div class="phone"><img src="assets/images/screen-inquiry.svg" alt="نافذة استفسار مصنفة مع ساعات الرد وسرية الأرقام" loading="lazy"></div>
+            <figcaption class="mt-5 font-bold">استفسار خاص منظم</figcaption>
+            <p class="mt-1 text-sm text-slate-500 max-w-xs">تصنيف الاستفسار، وساعات الرد الرسمية، وسرية الأرقام.</p>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section id="waitlist" class="bg-white border-y border-slate-200">
       <div class="max-w-xl mx-auto px-4 py-16">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-center">انضم إلى قائمة الانتظار</h2>
@@ -96,7 +153,7 @@
               class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-200">
               <option value="" disabled selected>اختر الصفة</option>
               <option>ولي أمر</option>
-              <option>معلم/ة</option>
+              <option>معلمة</option>
               <option>إدارة مدرسة</option>
             </select>
           </div>
@@ -106,10 +163,16 @@
               class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-200">
           </div>
           <div>
-            <label for="contact" class="block mb-1 text-sm font-medium">رقم الجوال أو البريد الإلكتروني</label>
-            <input id="contact" name="contact" type="text" required dir="ltr" autocomplete="email"
+            <label for="phone" class="block mb-1 text-sm font-medium">رقم الجوال / الواتساب</label>
+            <input id="phone" name="phone" type="tel" required dir="ltr" autocomplete="tel" inputmode="tel"
               class="w-full rounded-lg border border-slate-300 px-4 py-3 text-right focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-200">
           </div>
+          <div>
+            <label for="notes" class="block mb-1 text-sm font-medium">ملاحظات (اختياري)</label>
+            <textarea id="notes" name="notes" rows="3" maxlength="500"
+              class="w-full rounded-lg border border-slate-300 px-4 py-3 focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-200"></textarea>
+          </div>
+          <p id="form-error" class="hidden text-sm text-rose-600" role="alert"></p>
           <button type="submit"
             class="w-full rounded-xl bg-teal-600 px-6 py-4 text-lg font-bold text-white hover:bg-teal-700 transition">
             أرسل
@@ -119,6 +182,13 @@
         <div id="thanks" class="hidden mt-8 rounded-2xl bg-teal-50 border border-teal-200 p-6 text-center" role="status" aria-live="polite">
           <div class="text-4xl" aria-hidden="true">✅</div>
           <p class="mt-3 text-lg font-bold text-teal-800">شكراً لاهتمامك، سنتواصل معك عند إطلاق النسخة التجريبية الأولى</p>
+          <p class="mt-4 text-sm text-slate-600">تم حفظ طلبك. رقم طلبك:</p>
+          <p id="ticket" dir="ltr" class="mt-1 inline-block rounded-lg bg-white px-4 py-2 font-mono text-lg font-bold text-teal-700 border border-teal-200"></p>
+        </div>
+
+        <div id="admin-panel" class="hidden mt-8 rounded-xl border border-dashed border-slate-300 p-4 text-center text-sm text-slate-600">
+          <p>لوحة الإدارة: <span id="admin-count">0</span> طلب محفوظ في هذا المتصفح</p>
+          <button type="button" id="export-csv" class="mt-3 rounded-lg bg-slate-800 px-4 py-2 font-bold text-white hover:bg-slate-900">تصدير CSV (Excel)</button>
         </div>
       </div>
     </section>
@@ -136,13 +206,96 @@
   </footer>
 
   <script>
-    // Front-end only for now: the entry is not stored or sent anywhere until a backend is connected.
-    document.getElementById('waitlist-form').addEventListener('submit', function (e) {
+    // Webhook / form endpoint (e.g. Formspree, Google Apps Script). Leave empty to save locally only.
+    var WAITLIST_ENDPOINT = '';
+    var STORAGE_KEY = 'schoolBridgeWaitlist';
+
+    function loadEntries() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch (err) { return []; }
+    }
+
+    function newTicket() {
+      var d = new Date();
+      var ymd = d.getFullYear().toString().slice(2) +
+        String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+      var rand = crypto.getRandomValues(new Uint32Array(1))[0].toString(36).toUpperCase().slice(0, 5);
+      return 'SB-' + ymd + '-' + rand;
+    }
+
+    var form = document.getElementById('waitlist-form');
+    var errorBox = document.getElementById('form-error');
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      this.classList.add('hidden');
-      var thanks = document.getElementById('thanks');
-      thanks.classList.remove('hidden');
-      thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      errorBox.classList.add('hidden');
+      var data = Object.fromEntries(new FormData(form).entries());
+      var entry = {
+        ticket: newTicket(),
+        name: data.name.trim(),
+        role: data.role,
+        school: data.school.trim(),
+        phone: data.phone.trim(),
+        notes: (data.notes || '').trim(),
+        createdAt: new Date().toISOString()
+      };
+
+      var entries = loadEntries();
+      entries.push(entry);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+      refreshAdmin();
+
+      var submitBtn = form.querySelector('button[type=submit]');
+      submitBtn.disabled = true;
+
+      var send = WAITLIST_ENDPOINT
+        ? fetch(WAITLIST_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(entry)
+          }).then(function (r) { if (!r.ok) throw new Error('http ' + r.status); })
+        : Promise.resolve();
+
+      send.then(function () {
+        form.classList.add('hidden');
+        document.getElementById('ticket').textContent = entry.ticket;
+        var thanks = document.getElementById('thanks');
+        thanks.classList.remove('hidden');
+        thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }).catch(function () {
+        submitBtn.disabled = false;
+        errorBox.textContent = 'تعذر إرسال الطلب الآن، يرجى المحاولة مرة أخرى.';
+        errorBox.classList.remove('hidden');
+      });
+    });
+
+    // Admin export: open the page with #admin. Exports only entries stored in this browser.
+    function csvCell(v) {
+      v = String(v == null ? '' : v);
+      if (/^[=+\-@\t\r]/.test(v)) v = "'" + v;
+      return '"' + v.replace(/"/g, '""') + '"';
+    }
+
+    function refreshAdmin() {
+      document.getElementById('admin-count').textContent = loadEntries().length;
+    }
+
+    if (location.hash === '#admin') {
+      document.getElementById('admin-panel').classList.remove('hidden');
+      refreshAdmin();
+    }
+
+    document.getElementById('export-csv').addEventListener('click', function () {
+      var cols = ['ticket', 'name', 'role', 'school', 'phone', 'notes', 'createdAt'];
+      var rows = [cols.join(',')].concat(loadEntries().map(function (en) {
+        return cols.map(function (c) { return csvCell(en[c]); }).join(',');
+      }));
+      var blob = new Blob(['\uFEFF' + rows.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'school-bridge-waitlist.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
     });
   </script>
 </body>

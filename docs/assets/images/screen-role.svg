@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 720" width="360" height="720" font-family="Tajawal, Arial, sans-serif" direction="rtl">
+  <rect width="360" height="720" fill="#F6FBFA"/>
+  <circle cx="180" cy="190" r="48" fill="#E0F2F1"/>
+  <path d="M156 205h48M160 205v-24m40 24v-24M154 181c16-20 36-20 52 0M171 205v-18m18 18v-18" stroke="#00897B" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <text x="180" y="290" text-anchor="middle" font-size="28" font-weight="700" fill="#1F2D2B">جسر المدرسة</text>
+  <text x="180" y="322" text-anchor="middle" font-size="14" fill="#5B6B68">تواصل منظم وآمن بين البيت والمدرسة</text>
+  <rect x="40" y="380" width="280" height="52" rx="26" fill="#00897B"/>
+  <text x="180" y="412" text-anchor="middle" font-size="16" font-weight="700" fill="#FFFFFF">الدخول كولي أمر</text>
+  <rect x="41" y="452" width="278" height="50" rx="25" fill="none" stroke="#00897B" stroke-width="2"/>
+  <text x="180" y="483" text-anchor="middle" font-size="16" font-weight="700" fill="#00897B">الدخول كمعلمة</text>
+  <text x="180" y="660" text-anchor="middle" font-size="12" fill="#8A9996">بيئة واحدة موحدة لجميع الأطراف</text>
+</svg>
