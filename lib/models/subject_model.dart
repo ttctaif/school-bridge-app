@@ -4,6 +4,9 @@ class SubjectModel {
   final String teacherId;
   final String teacherName;
 
+  /// Matches StudentModel.gradeLabel.
+  final String classLabel;
+
   /// Daily inquiry window, "HH:mm" format.
   final String workStart;
   final String workEnd;
@@ -13,6 +16,7 @@ class SubjectModel {
     required this.name,
     required this.teacherId,
     required this.teacherName,
+    required this.classLabel,
     required this.workStart,
     required this.workEnd,
   });
@@ -22,6 +26,7 @@ class SubjectModel {
         name: json['name'] as String,
         teacherId: json['teacher_id'] as String,
         teacherName: json['teacher_name'] as String,
+        classLabel: json['class_label'] as String,
         workStart: json['work_start'] as String,
         workEnd: json['work_end'] as String,
       );
@@ -31,6 +36,7 @@ class SubjectModel {
         'name': name,
         'teacher_id': teacherId,
         'teacher_name': teacherName,
+        'class_label': classLabel,
         'work_start': workStart,
         'work_end': workEnd,
       };

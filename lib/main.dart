@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'views/parent/parent_home_screen.dart';
+import 'views/auth/role_select_screen.dart';
 
 void main() {
   runApp(const SchoolBridgeApp());
@@ -12,10 +12,13 @@ class SchoolBridgeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'School Bridge',
+      title: 'جسر المدرسة',
       debugShowCheckedModeBanner: false,
+      locale: const Locale('ar'),
       theme: ThemeData(colorSchemeSeed: Colors.teal, useMaterial3: true),
-      home: const ParentHomeScreen(),
+      builder: (context, child) =>
+          Directionality(textDirection: TextDirection.rtl, child: child!),
+      home: const RoleSelectScreen(),
     );
   }
 }

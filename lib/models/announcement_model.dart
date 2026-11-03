@@ -1,5 +1,9 @@
 enum AnnouncementType { summary, homework }
 
+extension AnnouncementTypeLabel on AnnouncementType {
+  String get label => this == AnnouncementType.summary ? 'ملخص' : 'واجب';
+}
+
 class AnnouncementModel {
   final String id;
   final String subjectId;
